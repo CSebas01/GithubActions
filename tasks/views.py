@@ -21,6 +21,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
 
     queryset = Group.objects.all().order_by("name")
+
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -29,5 +30,6 @@ class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all().order_by("created")
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
